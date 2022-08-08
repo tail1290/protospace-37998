@@ -1,0 +1,30 @@
+<main class="main">
+  <div class="inner">
+    <%# ログインしているときは以下を表示する %>
+    <% if user_signed_in? %>
+      こんにちは、
+      <%= link_to current_user.name, "/users/#{current_user.id}", class: :greeting__link%>さん
+    <% end %>
+
+      <%# <div class="greeting"> %>
+        <%# こんにちは、 %>
+        <%# <%= link_to "ユーザー名さん", root_path, class: :greeting__link%>
+      <%# </div> %>
+    <%# // ログインしているときは上記を表示する %>
+    <div class="card__wrapper">
+      <% Prototype.all.each do |prototype|%>
+        <div class="card">
+          <%= link_to image_tag(prototype.image, class: :card__img ), prototype_path(prototype.id)%>
+          <div class="card__body">
+            <%= link_to prototype.title, root_path, class: :card__title%>
+            <p class="card__summary">
+              <%= prototype.catch_copy %>
+            </p>
+            <%= link_to prototype.user.name, root_path, class: :card__user %>
+          </div>
+        </div>
+      <% end %>
+      <%# 投稿機能実装後、部分テンプレートでプロトタイプ投稿一覧を表示する %>
+    </div>
+  </div>
+</main>
