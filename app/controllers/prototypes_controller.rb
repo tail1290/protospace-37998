@@ -56,13 +56,13 @@ class PrototypesController < ApplicationController
     @prototype = Prototype.find(params[:id])
     @user = @prototype.user
     unless @user == current_user
-      redirect_to 'http://localhost:3000/users/sign_in'
+      redirect_to user_session_path
     end
   end
 
   def move_to_new
     unless user_signed_in?
-      redirect_to 'http://localhost:3000/users/sign_in'
+      redirect_to root_path
     end
   end
 
