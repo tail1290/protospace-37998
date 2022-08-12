@@ -12,7 +12,6 @@ class PrototypesController < ApplicationController
   end
 
   def create
-    Prototype.create(prototype_params)
     @prototype = Prototype.new(prototype_params)
     if @prototype.save
       render 'index'
@@ -62,7 +61,7 @@ class PrototypesController < ApplicationController
 
   def move_to_new
     unless user_signed_in?
-      redirect_to root_path
+      redirect_to user_session_path
     end
   end
 
